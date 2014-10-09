@@ -27,7 +27,6 @@ var Bikes_DayOfWeek = Class.extend({
 	//Drawing the bar chart for Origin distribution for the first visualization group.	
 	drawBarChart1: function (error, data)
 	{
-		var dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 		var width = this.barCanvasWidth;
 		var height = this.barCanvasHeight;
 		var svg = this.svgBar1;
@@ -53,7 +52,6 @@ var Bikes_DayOfWeek = Class.extend({
 			.filter(function(key) {return key == "No_Of_Bikes"}));		 
 			
 		data.forEach(function(d) {
-			d.Day = +d.Day;
 			d.No_Of_Bikes = +d.No_Of_Bikes;
 		});
 		 
@@ -129,7 +127,6 @@ var Bikes_DayOfWeek = Class.extend({
 			.filter(function(key) {return key == "No_Of_Bikes"}));		 
 			
 		data.forEach(function(d) {
-			d.Hour = +d.Hour;
 			d.No_Of_Bikes = +d.No_Of_Bikes;
 		});
 		 
