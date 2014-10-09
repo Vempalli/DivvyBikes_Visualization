@@ -1,0 +1,370 @@
+<!--origin.html
+	This page is loaded in the right frame when "Origin" is clicked below the map in map.html in the left frame. It produces all the 
+	visualizations (pie chart, bar chart, and raw data) as appropriate.-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+		<style>
+		.axis {
+			font: 10px sans-serif;
+		}
+		.axis path,
+		.axis line {
+			fill: none;
+			stroke: #000;
+			shape-rendering: crispEdges;
+		}
+		</style>
+		<script src="http://d3js.org/d3.v3.min.js"></script>
+		<script src="js/ClassExtension.js"></script>
+		<script src="js/RideDist/RideDistByCommAndStatApp.js"></script>	
+		<script>
+			//An instance of OriginApp class is created here. Three groups of the visualizations are generated with "Chicago" the default area.;
+			var rideDistByCommAndStatApp;
+			function init(){	
+					rideDistByCommAndStatApp = new RideDistByCommAndStatApp;
+					rideDistByCommAndStatApp.initAppWithCommunityAndStation("Near North Side","Dayton St & North Ave");
+					rideDistByCommAndStatApp.startup("#barchart1");
+					rideDistByCommAndStatApp.startup("#barchart2");
+				}
+		</script>
+    </head>
+	<body onload="init();">	
+		<div id="all" style="width:100%; height:100%; position:fixed; left:0;top:100; background: #fff">
+			<div id="communitymenu" style="width:100%; height:5%; background: #fff" align="center">
+				<select name="communitySelection" id="communitySelection" onchange="rideDistByCommAndStatApp.setCommunity(this.value);">
+					<option value='Armour Square'>Armour Square</option>
+					<option value='Bridgeport'>Bridgeport</option>
+					<option value='Chicago Loop'>Chicago Loop</option>
+					<option value='Douglas'>Douglas</option>
+					<option value='Edge Water'>Edge Water</option>
+					<option value='Grand Boulevard'>Grand Boulevard</option>
+					<option value='Hyde Park'>Hyde Park</option>
+					<option value='Kenwood'>Kenwood</option>
+					<option value='Lake View'>Lake View</option>
+					<option value='Lincoln Park'>Lincoln Park</option>
+					<option value='Lincoln Square'>Lincoln Square</option>
+					<option value='Logan Square'>Logan Square</option>
+					<option value='Lower West Side'>Lower West Side</option>
+					<option value='Near North Side'>Near North Side</option>
+					<option value='Near South Side'>Near South Side</option>
+					<option value='Near West Side'>Near West Side</option>
+					<option value='North Center'>North Center</option>
+					<option value='Oakland'>Oakland</option>
+					<option value='Ohare'>Ohare</option>
+					<option value='South Lawndale'>South Lawndale</option>
+					<option value='The Loop'>The Loop</option>
+					<option value='Uptown'>Uptown</option>
+					<option value='Washington Park'>Washington Park</option>
+					<option value='West Town'>West Town</option>
+				</select>						
+			</div>
+			<div id="stationmenu" style="width:100%; height:5%; background: #fff" align="center">
+				<select name="stationSelection" id="stationSelection" onchange="rideDistByCommAndStatApp.setStation(this.value);">
+					<option value='900 W Harrison'>900 W Harrison</option>
+					<option value='Aberdeen St & Jackson Blvd'>Aberdeen St & Jackson Blvd</option>
+					<option value='Aberdeen St & Madison St'>Aberdeen St & Madison St</option>
+					<option value='Ada St & Washington Blvd'>Ada St & Washington Blvd</option>
+					<option value='Adler Planetarium'>Adler Planetarium</option>
+					<option value='Ashland Ave & 13th St'>Ashland Ave & 13th St</option>
+					<option value='Ashland Ave & 21st St'>Ashland Ave & 21st St</option>
+					<option value='Ashland Ave & Augusta Blvd'>Ashland Ave & Augusta Blvd</option>
+					<option value='Ashland Ave & Belle Plaine Ave'>Ashland Ave & Belle Plaine Ave</option>
+					<option value='Ashland Ave & Blackhawk St'>Ashland Ave & Blackhawk St</option>
+					<option value='Ashland Ave & Chicago Ave'>Ashland Ave & Chicago Ave</option>
+					<option value='Ashland Ave & Division St'>Ashland Ave & Division St</option>
+					<option value='Ashland Ave & Grace St'>Ashland Ave & Grace St</option>
+					<option value='Ashland Ave & Grand Ave'>Ashland Ave & Grand Ave</option>
+					<option value='Ashland Ave & Lake St'>Ashland Ave & Lake St</option>
+					<option value='Ashland Ave & Wellington Ave'>Ashland Ave & Wellington Ave</option>
+					<option value='Ashland Ave & Wrightwood Ave'>Ashland Ave & Wrightwood Ave</option>
+					<option value='Bissell St & Armitage Ave'>Bissell St & Armitage Ave</option>
+					<option value='Blackstone Ave & Hyde Park Blvd'>Blackstone Ave & Hyde Park Blvd</option>
+					<option value='Blue Island Ave & 18th St'>Blue Island Ave & 18th St</option>
+					<option value='Broadway & Argyle St'>Broadway & Argyle St</option>
+					<option value='Broadway & Barry Ave'>Broadway & Barry Ave</option>
+					<option value='Broadway & Belmont Ave'>Broadway & Belmont Ave</option>
+					<option value='Broadway & Berwyn Ave'>Broadway & Berwyn Ave</option>
+					<option value='Broadway & Cornelia Ave'>Broadway & Cornelia Ave</option>
+					<option value='Broadway & Sheridan Rd'>Broadway & Sheridan Rd</option>
+					<option value='Broadway & Wilson Ave'>Broadway & Wilson Ave</option>
+					<option value='California Ave & 21st St'>California Ave & 21st St</option>
+					<option value='California Ave & Division St'>California Ave & Division St</option>
+					<option value='California Ave & Francis Pl'>California Ave & Francis Pl</option>
+					<option value='California Ave & Milwaukee Ave'>California Ave & Milwaukee Ave</option>
+					<option value='California Ave & North Ave'>California Ave & North Ave</option>
+					<option value='Calumet Ave & 18th St'>Calumet Ave & 18th St</option>
+					<option value='Calumet Ave & 33rd St'>Calumet Ave & 33rd St</option>
+					<option value='Calumet Ave & 35th St'>Calumet Ave & 35th St</option>
+					<option value='Campbell Ave & North Ave'>Campbell Ave & North Ave</option>
+					<option value='Canal St & Adams St'>Canal St & Adams St</option>
+					<option value='Canal St & Harrison St'>Canal St & Harrison St</option>
+					<option value='Canal St & Jackson Blvd'>Canal St & Jackson Blvd</option>
+					<option value='Canal St & Madison St'>Canal St & Madison St</option>
+					<option value='Canal St & Monroe St'>Canal St & Monroe St</option>
+					<option value='Cannon Dr & Fullerton Ave'>Cannon Dr & Fullerton Ave</option>
+					<option value='Carpenter St & Huron St'>Carpenter St & Huron St</option>
+					<option value='Cityfront Plaza & N Water St'>Cityfront Plaza & N Water St</option>
+					<option value='Claremont Ave & Hirsch St'>Claremont Ave & Hirsch St</option>
+					<option value='Clarendon Ave & Gordon Ter'>Clarendon Ave & Gordon Ter</option>
+					<option value='Clarendon Ave & Junior Ter'>Clarendon Ave & Junior Ter</option>
+					<option value='Clarendon Ave & Leland Ave'>Clarendon Ave & Leland Ave</option>
+					<option value='Clark St & Armitage Ave'>Clark St & Armitage Ave</option>
+					<option value='Clark St & Chicago Ave'>Clark St & Chicago Ave</option>
+					<option value='Clark St & Congress Pkwy'>Clark St & Congress Pkwy</option>
+					<option value='Clark St & Elm St'>Clark St & Elm St</option>
+					<option value='Clark St & Grace St'>Clark St & Grace St</option>
+					<option value='Clark St & Leland Ave'>Clark St & Leland Ave</option>
+					<option value='Clark St & Lincoln Ave'>Clark St & Lincoln Ave</option>
+					<option value='Clark St & Montrose Ave'>Clark St & Montrose Ave</option>
+					<option value='Clark St & North Ave'>Clark St & North Ave</option>
+					<option value='Clark St & Randolph St'>Clark St & Randolph St</option>
+					<option value='Clark St & Schiller St'>Clark St & Schiller St</option>
+					<option value='Clark St & Wellington Ave'>Clark St & Wellington Ave</option>
+					<option value='Clark St & Winnemac Ave'>Clark St & Winnemac Ave</option>
+					<option value='Clark St & Wrightwood Ave'>Clark St & Wrightwood Ave</option>
+					<option value='Clifton Ave & Armitage Ave'>Clifton Ave & Armitage Ave</option>
+					<option value='Clifton Ave & Lawrence Ave'>Clifton Ave & Lawrence Ave</option>
+					<option value='Clinton St & 18th St'>Clinton St & 18th St</option>
+					<option value='Clinton St & Lake St'>Clinton St & Lake St</option>
+					<option value='Clinton St & Madison St'>Clinton St & Madison St</option>
+					<option value='Clinton St & Roosevelt Rd'>Clinton St & Roosevelt Rd</option>
+					<option value='Clinton St & Tilden St'>Clinton St & Tilden St</option>
+					<option value='Clinton St & Washington Blvd'>Clinton St & Washington Blvd</option>
+					<option value='Clybourn Ave & Division St'>Clybourn Ave & Division St</option>
+					<option value='Columbus Dr & Randolph St'>Columbus Dr & Randolph St</option>
+					<option value='Cottage Grove Ave & 43rd St'>Cottage Grove Ave & 43rd St</option>
+					<option value='Cottage Grove Ave & 47th St'>Cottage Grove Ave & 47th St</option>
+					<option value='Cottage Grove Ave & 51st St'>Cottage Grove Ave & 51st St</option>
+					<option value='Cottage Grove Ave & Oakwood Blvd'>Cottage Grove Ave & Oakwood Blvd</option>
+					<option value='Daley Center Plaza'>Daley Center Plaza</option>
+					<option value='Damen Ave & Augusta Blvd'>Damen Ave & Augusta Blvd</option>
+					<option value='Damen Ave & Charleston St'>Damen Ave & Charleston St</option>
+					<option value='Damen Ave & Chicago Ave'>Damen Ave & Chicago Ave</option>
+					<option value='Damen Ave & Cortland St'>Damen Ave & Cortland St</option>
+					<option value='Damen Ave & Coulter St'>Damen Ave & Coulter St</option>
+					<option value='Damen Ave & Cullerton St'>Damen Ave & Cullerton St</option>
+					<option value='Damen Ave & Division St'>Damen Ave & Division St</option>
+					<option value='Damen Ave & Grand Ave'>Damen Ave & Grand Ave</option>
+					<option value='Damen Ave & Leland Ave'>Damen Ave & Leland Ave</option>
+					<option value='Damen Ave & Madison St'>Damen Ave & Madison St</option>
+					<option value='Damen Ave & Melrose Ave'>Damen Ave & Melrose Ave</option>
+					<option value='Damen Ave & Pierce Ave'>Damen Ave & Pierce Ave</option>
+					<option value='Damen Ave & Sunnyside Ave'>Damen Ave & Sunnyside Ave</option>
+					<option value='Damen Ave & Wellington Ave'>Damen Ave & Wellington Ave</option>
+					<option value='Dayton St & North Ave'selected>Dayton St & North Ave</option>
+					<option value='Dearborn Pkwy & Delaware Pl'>Dearborn Pkwy & Delaware Pl</option>
+					<option value='Dearborn St & Adams St'>Dearborn St & Adams St</option>
+					<option value='Dearborn St & Monroe St'>Dearborn St & Monroe St</option>
+					<option value='Desplaines St & Kinzie St'>Desplaines St & Kinzie St</option>
+					<option value='Eckhart Park'>Eckhart Park</option>
+					<option value='Ellis Ave & 58th St'>Ellis Ave & 58th St</option>
+					<option value='Emerald Ave & 28th St'>Emerald Ave & 28th St</option>
+					<option value='Emerald Ave & 31st St'>Emerald Ave & 31st St</option>
+					<option value='Fairbanks Ct & Grand Ave'>Fairbanks Ct & Grand Ave</option>
+					<option value='Fort Dearborn Dr & 31st St'>Fort Dearborn Dr & 31st St</option>
+					<option value='Franklin St & Arcade Pl'>Franklin St & Arcade Pl</option>
+					<option value='Franklin St & Chicago Ave'>Franklin St & Chicago Ave</option>
+					<option value='Franklin St & Jackson Blvd'>Franklin St & Jackson Blvd</option>
+					<option value='Franklin St & Lake St'>Franklin St & Lake St</option>
+					<option value='Franklin St & Quincy St'>Franklin St & Quincy St</option>
+					<option value='Green St & Milwaukee Ave'>Green St & Milwaukee Ave</option>
+					<option value='Green St & Randolph St'>Green St & Randolph St</option>
+					<option value='Greenview Ave & Diversey Pkwy'>Greenview Ave & Diversey Pkwy</option>
+					<option value='Greenview Ave & Fullerton Ave'>Greenview Ave & Fullerton Ave</option>
+					<option value='Greenwood Ave & 47th St'>Greenwood Ave & 47th St</option>
+					<option value='Halsted St & 18th St'>Halsted St & 18th St</option>
+					<option value='Halsted St & 21st St'>Halsted St & 21st St</option>
+					<option value='Halsted St & 35th St'>Halsted St & 35th St</option>
+					<option value='Halsted St & 37th St'>Halsted St & 37th St</option>
+					<option value='Halsted St & Archer Ave'>Halsted St & Archer Ave</option>
+					<option value='Halsted St & Blackhawk St'>Halsted St & Blackhawk St</option>
+					<option value='Halsted St & Dickens Ave'>Halsted St & Dickens Ave</option>
+					<option value='Halsted St & Diversey Pkwy'>Halsted St & Diversey Pkwy</option>
+					<option value='Halsted St & James M Rochford St'>Halsted St & James M Rochford St</option>
+					<option value='Halsted St & Madison St'>Halsted St & Madison St</option>
+					<option value='Halsted St & Maxwell St'>Halsted St & Maxwell St</option>
+					<option value='Halsted St & Polk St'>Halsted St & Polk St</option>
+					<option value='Halsted St & Roscoe St'>Halsted St & Roscoe St</option>
+					<option value='Halsted St & Waveland Ave'>Halsted St & Waveland Ave</option>
+					<option value='Halsted St & Willow St'>Halsted St & Willow St</option>
+					<option value='Halsted St & Wrightwood Ave'>Halsted St & Wrightwood Ave</option>
+					<option value='Hampden Ct & Diversey Pkwy'>Hampden Ct & Diversey Pkwy</option>
+					<option value='Hermitage Ave & Polk St'>Hermitage Ave & Polk St</option>
+					<option value='Indiana Ave & 26th St'>Indiana Ave & 26th St</option>
+					<option value='Indiana Ave & 31st St'>Indiana Ave & 31st St</option>
+					<option value='Indiana Ave & 40th St'>Indiana Ave & 40th St</option>
+					<option value='Indiana Ave & Roosevelt Rd'>Indiana Ave & Roosevelt Rd</option>
+					<option value='Jefferson St & Monroe St'>Jefferson St & Monroe St</option>
+					<option value='Kedzie Ave & Milwaukee Ave'>Kedzie Ave & Milwaukee Ave</option>
+					<option value='Kedzie Ave & Palmer Ct'>Kedzie Ave & Palmer Ct</option>
+					<option value='Kimbark Ave & 53rd St'>Kimbark Ave & 53rd St</option>
+					<option value='King Dr & 47th St'>King Dr & 47th St</option>
+					<option value='Kingsbury St & Erie St'>Kingsbury St & Erie St</option>
+					<option value='Lake Park Ave & 47th St'>Lake Park Ave & 47th St</option>
+					<option value='Lake Park Ave & 56th St'>Lake Park Ave & 56th St</option>
+					<option value='Lake Shore Dr & Belmont Ave'>Lake Shore Dr & Belmont Ave</option>
+					<option value='Lake Shore Dr & Diversey Pkwy'>Lake Shore Dr & Diversey Pkwy</option>
+					<option value='Lake Shore Dr & Monroe St'>Lake Shore Dr & Monroe St</option>
+					<option value='Lake Shore Dr & North Blvd'>Lake Shore Dr & North Blvd</option>
+					<option value='Lake Shore Dr & Ohio St'>Lake Shore Dr & Ohio St</option>
+					<option value='Lake Shore Dr & Wellington Ave'>Lake Shore Dr & Wellington Ave</option>
+					<option value='Lakeview Ave & Fullerton Pkwy'>Lakeview Ave & Fullerton Pkwy</option>
+					<option value='Larrabee St & Armitage Ave'>Larrabee St & Armitage Ave</option>
+					<option value='Larrabee St & Kingsbury St'>Larrabee St & Kingsbury St</option>
+					<option value='Larrabee St & Menomonee St'>Larrabee St & Menomonee St</option>
+					<option value='Larrabee St & North Ave'>Larrabee St & North Ave</option>
+					<option value='Larrabee St & Webster Ave'>Larrabee St & Webster Ave</option>
+					<option value='LaSalle St & Illinois St'>LaSalle St & Illinois St</option>
+					<option value='LaSalle St & Jackson Blvd'>LaSalle St & Jackson Blvd</option>
+					<option value='LaSalle St & Washington St'>LaSalle St & Washington St</option>
+					<option value='Leavitt St & Armitage Ave'>Leavitt St & Armitage Ave</option>
+					<option value='Leavitt St & Hirsch St'>Leavitt St & Hirsch St</option>
+					<option value='Leavitt St & North Ave'>Leavitt St & North Ave</option>
+					<option value='Lincoln Ave & Addison St'>Lincoln Ave & Addison St</option>
+					<option value='Lincoln Ave & Belle Plaine Ave'>Lincoln Ave & Belle Plaine Ave</option>
+					<option value='Lincoln Ave & Belmont Ave'>Lincoln Ave & Belmont Ave</option>
+					<option value='Lincoln Ave & Diversey Pkwy'>Lincoln Ave & Diversey Pkwy</option>
+					<option value='Lincoln Ave & Eastwood Ave'>Lincoln Ave & Eastwood Ave</option>
+					<option value='Lincoln Ave & Fullerton Ave'>Lincoln Ave & Fullerton Ave</option>
+					<option value='Lincoln Ave & Leavitt St'>Lincoln Ave & Leavitt St</option>
+					<option value='Lincoln Ave & Roscoe St'>Lincoln Ave & Roscoe St</option>
+					<option value='Lincoln Ave & Waveland Ave'>Lincoln Ave & Waveland Ave</option>
+					<option value='Logan Blvd & Elston Ave'>Logan Blvd & Elston Ave</option>
+					<option value='Loomis St & Jackson Blvd'>Loomis St & Jackson Blvd</option>
+					<option value='Loomis St & Lexington St'>Loomis St & Lexington St</option>
+					<option value='Loomis St & Taylor St'>Loomis St & Taylor St</option>
+					<option value='Marshfield Ave & Cortland St'>Marshfield Ave & Cortland St</option>
+					<option value='Martin Luther King Dr & 29th St'>Martin Luther King Dr & 29th St</option>
+					<option value='Martin Luther King Dr & Oakwood Blvd'>Martin Luther King Dr & Oakwood Blvd</option>
+					<option value='May St & Cullerton St'>May St & Cullerton St</option>
+					<option value='May St & Fulton St'>May St & Fulton St</option>
+					<option value='May St & Randolph St'>May St & Randolph St</option>
+					<option value='May St & Taylor St'>May St & Taylor St</option>
+					<option value='McClurg Ct & Illinois St'>McClurg Ct & Illinois St</option>
+					<option value='McCormick Place'>McCormick Place</option>
+					<option value='Michigan Ave & 14th St'>Michigan Ave & 14th St</option>
+					<option value='Michigan Ave & 18th St'>Michigan Ave & 18th St</option>
+					<option value='Michigan Ave & Congress Pkwy'>Michigan Ave & Congress Pkwy</option>
+					<option value='Michigan Ave & Jackson Blvd'>Michigan Ave & Jackson Blvd</option>
+					<option value='Michigan Ave & Lake St'>Michigan Ave & Lake St</option>
+					<option value='Michigan Ave & Madison St'>Michigan Ave & Madison St</option>
+					<option value='Michigan Ave & Oak St'>Michigan Ave & Oak St</option>
+					<option value='Michigan Ave & Pearson St'>Michigan Ave & Pearson St</option>
+					<option value='Michigan Ave & Washington St'>Michigan Ave & Washington St</option>
+					<option value='Mies van der Rohe Way & Chicago Ave'>Mies van der Rohe Way & Chicago Ave</option>
+					<option value='Millennium Park'>Millennium Park</option>
+					<option value='Milwaukee Ave & Rockwell St'>Milwaukee Ave & Rockwell St</option>
+					<option value='Milwaukee Ave & Wabansia Ave'>Milwaukee Ave & Wabansia Ave</option>
+					<option value='Montrose Harbor'>Montrose Harbor</option>
+					<option value='Morgan Ave & 14th Pl'>Morgan Ave & 14th Pl</option>
+					<option value='Morgan St & 18th St'>Morgan St & 18th St</option>
+					<option value='Morgan St & 31st St'>Morgan St & 31st St</option>
+					<option value='Morgan St & Lake St'>Morgan St & Lake St</option>
+					<option value='Morgan St & Polk St'>Morgan St & Polk St</option>
+					<option value='Museum Campus'>Museum Campus</option>
+					<option value='Noble St & Milwaukee Ave'>Noble St & Milwaukee Ave</option>
+					<option value='Normal Ave & Archer Ave'>Normal Ave & Archer Ave</option>
+					<option value='Ogden Ave & Chicago Ave'>Ogden Ave & Chicago Ave</option>
+					<option value='Ogden Ave & Congress Pkwy'>Ogden Ave & Congress Pkwy</option>
+					<option value='Ogden Ave & Race Ave'>Ogden Ave & Race Ave</option>
+					<option value='Orleans St & Elm St'>Orleans St & Elm St</option>
+					<option value='Orleans St & Merchandise Mart Plaza'>Orleans St & Merchandise Mart Plaza</option>
+					<option value='Paulina St & 18th St'>Paulina St & 18th St</option>
+					<option value='Paulina St & Diversey Pkwy'>Paulina St & Diversey Pkwy</option>
+					<option value='Paulina St & Montrose Ave'>Paulina St & Montrose Ave</option>
+					<option value='Peoria St & Jackson Blvd'>Peoria St & Jackson Blvd</option>
+					<option value='Pine Grove Ave & Irving Park Rd'>Pine Grove Ave & Irving Park Rd</option>
+					<option value='Pine Grove Ave & Waveland Ave'>Pine Grove Ave & Waveland Ave</option>
+					<option value='Prairie Ave & Garfield Blvd'>Prairie Ave & Garfield Blvd</option>
+					<option value='Racine Ave & 13th St'>Racine Ave & 13th St</option>
+					<option value='Racine Ave & 15th St'>Racine Ave & 15th St</option>
+					<option value='Racine Ave & 18th St'>Racine Ave & 18th St</option>
+					<option value='Racine Ave & Belmont Ave'>Racine Ave & Belmont Ave</option>
+					<option value='Racine Ave & Congress Pkwy'>Racine Ave & Congress Pkwy</option>
+					<option value='Racine Ave & Fullerton Ave'>Racine Ave & Fullerton Ave</option>
+					<option value='Racine Ave & Wrightwood Ave'>Racine Ave & Wrightwood Ave</option>
+					<option value='Ravenswood Ave & Berteau Ave'>Ravenswood Ave & Berteau Ave</option>
+					<option value='Ravenswood Ave & Irving Park Rd'>Ravenswood Ave & Irving Park Rd</option>
+					<option value='Ravenswood Ave & Montrose Ave'>Ravenswood Ave & Montrose Ave</option>
+					<option value='Rhodes Ave & 32nd St'>Rhodes Ave & 32nd St</option>
+					<option value='Sangamon St & Washington Blvd'>Sangamon St & Washington Blvd</option>
+					<option value='Sedgwick St & Huron St'>Sedgwick St & Huron St</option>
+					<option value='Sedgwick St & North Ave'>Sedgwick St & North Ave</option>
+					<option value='Sedgwick St & Schiller St'>Sedgwick St & Schiller St</option>
+					<option value='Sedgwick St & Webster Ave'>Sedgwick St & Webster Ave</option>
+					<option value='Seeley Ave & Roscoe St'>Seeley Ave & Roscoe St</option>
+					<option value='Sheffield Ave & Addison St'>Sheffield Ave & Addison St</option>
+					<option value='Sheffield Ave & Fullerton Ave'>Sheffield Ave & Fullerton Ave</option>
+					<option value='Sheffield Ave & Kingsbury St'>Sheffield Ave & Kingsbury St</option>
+					<option value='Sheffield Ave & Webster Ave'>Sheffield Ave & Webster Ave</option>
+					<option value='Sheffield Ave & Wellington Ave'>Sheffield Ave & Wellington Ave</option>
+					<option value='Sheffield Ave & Willow St'>Sheffield Ave & Willow St</option>
+					<option value='Sheffield Ave & Wrightwood Ave'>Sheffield Ave & Wrightwood Ave</option>
+					<option value='Sheridan Rd & Buena Ave'>Sheridan Rd & Buena Ave</option>
+					<option value='Sheridan Rd & Irving Park Rd'>Sheridan Rd & Irving Park Rd</option>
+					<option value='Sheridan Rd & Lawrence Ave'>Sheridan Rd & Lawrence Ave</option>
+					<option value='Sheridan Rd & Montrose Ave'>Sheridan Rd & Montrose Ave</option>
+					<option value='Shore Drive & 55th St'>Shore Drive & 55th St</option>
+					<option value='Southport Ave & Belmont Ave'>Southport Ave & Belmont Ave</option>
+					<option value='Southport Ave & Clark St'>Southport Ave & Clark St</option>
+					<option value='Southport Ave & Clybourn Ave'>Southport Ave & Clybourn Ave</option>
+					<option value='Southport Ave & Irving Park Rd'>Southport Ave & Irving Park Rd</option>
+					<option value='Southport Ave & Roscoe St'>Southport Ave & Roscoe St</option>
+					<option value='Southport Ave & Waveland Ave'>Southport Ave & Waveland Ave</option>
+					<option value='Southport Ave & Wellington Ave'>Southport Ave & Wellington Ave</option>
+					<option value='Southport Ave & Wrightwood Ave'>Southport Ave & Wrightwood Ave</option>
+					<option value='St Clair St & Erie St'>St Clair St & Erie St</option>
+					<option value='State St & 16th St'>State St & 16th St</option>
+					<option value='State St & 19th St'>State St & 19th St</option>
+					<option value='State St & 29th St'>State St & 29th St</option>
+					<option value='State St & 33rd St'>State St & 33rd St</option>
+					<option value='State St & 35th St'>State St & 35th St</option>
+					<option value='State St & Erie St'>State St & Erie St</option>
+					<option value='State St & Harrison St'>State St & Harrison St</option>
+					<option value='State St & Kinzie St'>State St & Kinzie St</option>
+					<option value='State St & Pearson St'>State St & Pearson St</option>
+					<option value='State St & Randolph St'>State St & Randolph St</option>
+					<option value='State St & Van Buren St'>State St & Van Buren St</option>
+					<option value='Stave St & Armitage Ave'>Stave St & Armitage Ave</option>
+					<option value='Stetson Ave & South Water St'>Stetson Ave & South Water St</option>
+					<option value='Stockton Dr & Wrightwood Ave'>Stockton Dr & Wrightwood Ave</option>
+					<option value='Streeter Dr & Illinois St'>Streeter Dr & Illinois St</option>
+					<option value='Theater on the Lake'>Theater on the Lake</option>
+					<option value='Wabash Ave & 8th St'>Wabash Ave & 8th St</option>
+					<option value='Wabash Ave & Cermak Rd'>Wabash Ave & Cermak Rd</option>
+					<option value='Wabash Ave & Grand Ave'>Wabash Ave & Grand Ave</option>
+					<option value='Wabash Ave & Roosevelt Rd'>Wabash Ave & Roosevelt Rd</option>
+					<option value='Wabash Ave & Wacker Pl'>Wabash Ave & Wacker Pl</option>
+					<option value='Wallace Ave & 35th St'>Wallace Ave & 35th St</option>
+					<option value='Wells St & 19th St'>Wells St & 19th St</option>
+					<option value='Wells St & Concord Ln'>Wells St & Concord Ln</option>
+					<option value='Wells St & Erie St'>Wells St & Erie St</option>
+					<option value='Wells St & Evergreen Ave'>Wells St & Evergreen Ave</option>
+					<option value='Wells St & Hubbard St'>Wells St & Hubbard St</option>
+					<option value='Wells St & Polk St'>Wells St & Polk St</option>
+					<option value='Wells St & Walton St'>Wells St & Walton St</option>
+					<option value='Wentworth Ave & 24th St'>Wentworth Ave & 24th St</option>
+					<option value='Wentworth Ave & Archer Ave'>Wentworth Ave & Archer Ave</option>
+					<option value='Western Ave & 21st St'>Western Ave & 21st St</option>
+					<option value='Western Ave & 24th St'>Western Ave & 24th St</option>
+					<option value='Western Ave & Division St'>Western Ave & Division St</option>
+					<option value='Western Ave & Leland Ave'>Western Ave & Leland Ave</option>
+					<option value='Western Ave & Winnebago Ave'>Western Ave & Winnebago Ave</option>
+					<option value='Wilton Ave & Belmont Ave'>Wilton Ave & Belmont Ave</option>
+					<option value='Wilton Ave & Diversey Pkwy'>Wilton Ave & Diversey Pkwy</option>
+					<option value='Wolcott Ave & Lawrence Ave'>Wolcott Ave & Lawrence Ave</option>
+					<option value='Wolcott Ave & Polk St'>Wolcott Ave & Polk St</option>
+					<option value='Wood St & Division St'>Wood St & Division St</option>
+					<option value='Wood St & Grand Ave'>Wood St & Grand Ave</option>
+					<option value='Wood St & Milwaukee Ave'>Wood St & Milwaukee Ave</option>
+					<option value='Wood St & North Ave'>Wood St & North Ave</option>
+					<option value='Wood St & Taylor St'>Wood St & Taylor St</option>
+					<option value='Woodlawn Ave & 55th St'>Woodlawn Ave & 55th St</option>
+				</select>						
+			</div><hr />
+		   <div id="barchart1" style="width:100%; height:45%;  background: #fff"></div>
+		   <div id="barchart2" style="width:100%; height:45%;  background: #fff"></div>
+		</div>
+    </body>
+</html>
