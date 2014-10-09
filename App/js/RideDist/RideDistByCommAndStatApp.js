@@ -34,6 +34,43 @@ var RideDistByCommAndStatApp = Class.extend({
 		this.myTag = whereToRender;
 		this.updateScreen();
 	},
+	//Code Added by Theja to get Drop down values
+	showCommunityList: function(){
+        
+        d3.json("json/bikesDistTime/Communities.json",function(json){
+            //populate dropdown
+            var community = d3.select("#communitySelection");
+            community.selectAll("option")
+                .data(json)
+                .enter()
+                .append("option")
+                .attr("value",function(data){
+                        return data.name;
+                })
+                .text(function(data,index){ 
+                    return data.name;
+                   
+                });
+        });
+    },
+    //Code Added by Theja to get Drop down values
+    showStationsList: function(){
+        
+        d3.json("json/bikesDistTime/stations_final.json",function(json){
+            //populate dropdown
+            var station = d3.select("#stationSelection");
+            station.selectAll("option")
+                .data(json)
+                .enter()
+                .append("option")
+                .attr("value",function(data){
+                        return data.stationName;
+                })
+                .text(function(data,index){
+                    return data.stationName;
+                });
+        });
+    },
 
 	/////////////////////////////////////////////////////////////
 
@@ -73,7 +110,10 @@ var RideDistByCommAndStatApp = Class.extend({
 		});
 		 
 		x.domain(data.map(function(d) { return d.DIST_METERS; }));
-		y.domain([0, d3.max(data, function(d) { return d.TOTAL_TRIPS; })]);
+		//Modified data to filtered data - Theja
+		y.domain([0, d3.max(data.filter(function(d){
+				return d.COMMUNITY === community && d.STATION_NAME === station;
+			}), function(d) { return d.TOTAL_TRIPS; })]);
 
 		svg.append("g")
 		.attr("class", "x axis")
@@ -159,7 +199,10 @@ var RideDistByCommAndStatApp = Class.extend({
 		});
 		 
 		x.domain(data.map(function(d) { return d.TRIP_DURATION; }));
-		y.domain([0, d3.max(data, function(d) { return d.TOTAL_TRIPS; })]);
+		//Modified data to filtered data - Theja
+		y.domain([0, d3.max(data.filter(function(d){
+				return d.COMMUNITY === community && d.STATION_NAME === station;
+			}), function(d) { return d.TOTAL_TRIPS; })]);
 
 		svg.append("g")
 		.attr("class", "x axis")

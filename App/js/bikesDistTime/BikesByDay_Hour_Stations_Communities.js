@@ -77,8 +77,8 @@ var BikesByCommAndStations = Class.extend({
         this.myTag = "#barchart1";
 		this.updateData();
 		
-		/*this.myTag = "#barchart2";
-		this.updateData();*/
+		this.myTag = "#barchart2";
+		this.updateData();
 
     },
 
@@ -88,8 +88,8 @@ var BikesByCommAndStations = Class.extend({
         this.myTag = "#barchart1";
 		this.updateData();
 		
-		/*this.myTag = "#barchart2";
-		this.updateData();*/
+		this.myTag = "#barchart2";
+		this.updateData();
 
     },
 	/////////////////////////////////////////////////////////////
@@ -125,12 +125,13 @@ var BikesByCommAndStations = Class.extend({
 			.filter(function(key) {return key == "No_Of_Bikes"}));		 
 			
 		data.forEach(function(d) {
-			d.Day = +d.Day;
 			d.No_Of_Bikes = +d.No_Of_Bikes;
 		});
 		 
 		x.domain(data.map(function(d) { return d.Day; }));
-		y.domain([0, d3.max(data, function(d) { return d.No_Of_Bikes; })]);
+		y.domain([0, d3.max(data.filter(function(d){
+				return d.CommunityName === community && d.StationName === station;
+			}), function(d) { return d.No_Of_Bikes; })]);
 
 		svg.append("g")
 		.attr("class", "x axis")
@@ -141,7 +142,7 @@ var BikesByCommAndStations = Class.extend({
 		.attr("x", width/2)
 		.attr("dx", ".71em")
 		.style("text-anchor", "middle")
-		.text("Distance Interval");
+		.text("Day of Week");
 		 
 		svg.append("g")
 		.attr("class", "y axis")
@@ -151,7 +152,7 @@ var BikesByCommAndStations = Class.extend({
 		.attr("y", -50)
 		.attr("dy", ".71em")
 		.style("text-anchor", "end")
-		.text("Total Trips");
+		.text("Active Bikes");
 		 
 		svg.selectAll("bar")
 			.data(data.filter(function(d){
@@ -175,7 +176,7 @@ var BikesByCommAndStations = Class.extend({
 		   .attr("text-anchor","middle")
 		   .attr("font-family", "sans-serif")
 		   .attr("font-size","20pt")
-		   .text("Ride Dist. By Distance Bar Chart");
+		   .text("Bikes Distribution by Day of Week");
 	},
 
 	/////////////////////////////////////////////////////////////
@@ -185,7 +186,7 @@ var BikesByCommAndStations = Class.extend({
 	{
 		var width = this.barCanvasWidth;
 		var height = this.barCanvasHeight;
-		var community = this.community;
+		var community = this.communityArea;
 		var station = this.station;
 		
 		var svg = this.svgBar2;
@@ -208,15 +209,16 @@ var BikesByCommAndStations = Class.extend({
 			.tickFormat(d3.format(".2s"));
 
 		color.domain(d3.keys(data[0])
-			.filter(function(key) {return key == "TOTAL_TRIPS"}));		 
+			.filter(function(key) {return key == "No_Of_Bikes"}));		 
 			
 		data.forEach(function(d) {
-			d.TRIP_DURATION = +d.TRIP_DURATION;
-			d.TOTAL_TRIPS = +d.TOTAL_TRIPS;
+			d.No_Of_Bikes = +d.No_Of_Bikes;
 		});
 		 
-		x.domain(data.map(function(d) { return d.TRIP_DURATION; }));
-		y.domain([0, d3.max(data, function(d) { return d.TOTAL_TRIPS; })]);
+		x.domain(data.map(function(d) { return d.Hour_of_Day; }));
+		y.domain([0, d3.max(data.filter(function(d){
+				return d.CommunityName === community && d.StationName === station;
+			}), function(d) { return d.No_Of_Bikes; })]);
 
 		svg.append("g")
 		.attr("class", "x axis")
@@ -227,7 +229,7 @@ var BikesByCommAndStations = Class.extend({
 		.attr("x", width/2)
 		.attr("dx", ".71em")
 		.style("text-anchor", "middle")
-		.text("Time Interval");
+		.text("Hour of Day");
 		 
 		svg.append("g")
 		.attr("class", "y axis")
@@ -237,22 +239,22 @@ var BikesByCommAndStations = Class.extend({
 		.attr("y", -50)
 		.attr("dy", ".71em")
 		.style("text-anchor", "end")
-		.text("Total Trips");
+		.text("Active Bikes");
 		 
 		svg.selectAll("bar")
 			.data(data.filter(function(d){
-				return d.COMMUNITY === community && d.STATION_NAME === station;
+				return d.CommunityName === community && d.StationName === station;
 			}))
 			.enter().append("rect")
 			.style("fill", "steelblue")
-			.attr("x", function(d) { return x(d.TRIP_DURATION); })
+			.attr("x", function(d) { return x(d.Hour_of_Day); })
 			.attr("width", x.rangeBand())
-			.attr("y", function(d) { return y(d.TOTAL_TRIPS); })
-			.attr("height", function(d) { return height - y(d.TOTAL_TRIPS); });
+			.attr("y", function(d) { return y(d.No_Of_Bikes); })
+			.attr("height", function(d) { return height - y(d.No_Of_Bikes); });
 		
 		svg.selectAll(".chart-title")
 			.data(data.filter(function(d){
-				return d.COMMUNITY === community && d.STATION_NAME === station;
+				return d.CommunityName === community && d.StationName === station;
 			}))
 		   .enter()
 		   .append("text")
@@ -261,7 +263,7 @@ var BikesByCommAndStations = Class.extend({
 		   .attr("text-anchor","middle")
 		   .attr("font-family", "sans-serif")
 		   .attr("font-size","20pt")
-		   .text("Ride Dist. By Time Bar Chart");	},
+		   .text("Bikes Distribution by Hour of Day");	},
 	
 	/////////////////////////////////////////////////////////////
 
@@ -303,11 +305,11 @@ var BikesByCommAndStations = Class.extend({
 				this.inDataCallbackFunc = this.drawBarChart1.bind(this);
 				d3.json(fileToLoad, this.inDataCallbackFunc);
 				break;
-			/*case "#barchart2":
-				var fileToLoad = "json/RideDist/ride_dist_by_time_by_community_and_station.php";
+			case "#barchart2":
+				var fileToLoad = "json/bikesDistTime/Bikes_HourOfDay_Stations.json";
 				this.inDataCallbackFunc = this.drawBarChart2.bind(this);
 				d3.json(fileToLoad, this.inDataCallbackFunc);
-				break;*/
+				break;
 		}
 	},
 
