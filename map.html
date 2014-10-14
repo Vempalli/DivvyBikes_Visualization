@@ -1,0 +1,380 @@
+<html lang="en">
+<head>
+	<title>Project 2: Bicycle Race</title>
+
+    <link 
+        rel="stylesheet" 
+        href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"
+    />
+
+    <style>
+h1{
+    font-family: sans-serif;
+
+}
+        .info {
+            padding: 6px 8px;
+            font: 14px/16px Arial, Helvetica, sans-serif;
+            background: white;
+            background: rgba(255,255,255,0.8);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+        }
+
+        .info h4 {
+            margin: 0 0 5px;
+            color: #777;
+        }
+
+        .legend {
+            text-align: left;
+            line-height: 18px;
+            color: #555;
+        }
+
+        .legend i {
+            width: 18px;
+            height: 18px;
+            float: left;
+            margin-right: 8px;
+            opacity: 0.7;
+        }
+    </style>
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+
+    <script
+        src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js">
+
+    </script>
+    <script style="text/javascript" src="data/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <script src="App/js/ClassExtension.js"></script>
+    <script src="App/Map/WorldMap.js"></script>
+    <script src="App/Map/MapGeoJson.js"></script>
+    <script src="App/Map/fi_markers.js"></script>
+    <script src="App/js/Menu.js"></script>
+    <script src="App/js/RideDist/BikeDistApp.js"></script>
+    <script src="App/js/RideDist/RideDistApp.js"></script>
+    <script src="App/js/RideDist/RideDistByCommAndStatApp.js"></script>
+<script>
+    function showOverAllData(){
+
+            top.frames['TargetPage'].location = 'data.html';
+
+    }
+</script>
+
+</head>
+<body>  <!-- Define this function... TO DO-->
+<center><h1>Bicycle Race</h1></center><br>
+<div id="container" style="width: 100%;height: 90%;border-right: thin solid #d3d3d3">
+<div id="controls" style="position: relative;float: left;width:100%;height: 7%">
+    <center><button id = "Overall" value="OverallData" onclick="showOverAllData()">Show Overall Data</button> </center><!-- Define this onclick TODO-->
+</div>
+    <div id="MapSegment" style="position: relative;float: left;height: 100%;width: 100%">
+	    <div id="map" class="MapSegment" style="width: 100%; height: 83%;"></div>
+
+	    <script type="text/javascript">
+
+
+        var map = null;
+        var map1 = null;
+        var map2 = null;
+        var map3 = null;
+        var map3Counter = 1;
+
+        var svg = null;
+
+        function setMap(whichMap)
+        {
+            var selectedOnes = null;
+
+            if (whichMap === 1)
+            {
+                map.removeLayer(map2);
+                map1.addTo(map);
+
+                selectedOnes = svg.selectAll("text");
+                selectedOnes.style("fill", "white");
+            }
+            else if (whichMap === 2)
+            {
+                map.removeLayer(map1);
+                map2.addTo(map);
+
+                selectedOnes = svg.selectAll("text");
+                selectedOnes.style("fill", "black");
+
+            }
+            else if (whichMap === 3 ){
+
+                map3Counter = map3Counter + 1;
+
+
+
+                if (map3Counter%2==0){
+
+                    // control that shows community info on hover
+                    var info = L.control();
+
+                    // Updating the community div
+                    info.onAdd = function (map) {
+                        this._div = L.DomUtil.create('div', 'info');
+                        this.update();
+                        return this._div;
+                    };
+
+                    /* info.onRemove = function (map){
+                     // remove layer's DOM elements and listeners
+                     map.getPanes().overlayPane.removeChild(this._div);
+                     //map.off('viewreset', this._reset, this);
+                     }
+                     */
+
+                    // Showing the Community Name
+                    info.update = function (props) {
+
+                        this._div.innerHTML = '<h4>Community Name</h4>' +  (props ?
+                                '<b>' + props.name + '</b>' + '<br>' + '<b>No. of Divvy Stations: '
+                                        + props.divvy_station + '</b>'
+                                : 'Hover over a community');
+
+                    };
+
+                    // Adding to Map
+                    info.addTo(map);
+
+                    function highlightFeature(e) {
+                        var layer = e.target;
+
+                        layer.setStyle({
+                            weight: 5,
+                            color: '#555',
+                            dashArray: '',
+                            fillOpacity: 0.7
+                        });
+
+                        info.update(layer.feature.properties);
+                    }
+
+
+                    function getColor(d) {
+                        console.log("feature.properties.divvy_station" + d);
+                        return  d > 35 ? '#800026' :
+                                d > 30  ? '#BD0026' :
+                                        d > 25  ? '#E31A1C' :
+                                                d > 20  ? '#FC4E2A' :
+                                                        d > 15   ? '#FD8D3C' :
+                                                                d > 10   ? '#FEB24C' :
+                                                                        d > 1   ? '#f2bb10' :
+                                                                                d == 0   ? '#eeeee6':
+                                                                                        '#eeeee6';
+                    }
+
+                    function mapStyle(feature) {
+                        return {
+                            fillColor: getColor(feature.properties.divvy_station),
+                            weight: 2,
+                            opacity: 1,
+                            color: 'white',
+                            dashArray: '3',
+                            fillOpacity: 0.7
+                        };
+                    }
+
+                    var geojson;
+
+                    function resetHighlight(e) {
+                        geojson.resetStyle(e.target);
+                        info.update();
+                    }
+
+                    function zoomToFeature(e) {
+                        map.fitBounds(e.target.getBounds());
+                    }
+
+                    function onEachFeature(feature, layer) {
+                        layer.on({
+                            mouseover: highlightFeature,
+                            mouseout: resetHighlight,
+                            click: zoomToFeature
+                        });
+                    }
+
+                    geojson = L.geoJson(worldMap, {
+                        style: mapStyle,
+                        onEachFeature: onEachFeature
+                    }).addTo(map);
+
+                    var legend = L.control({position: 'bottomright'});
+
+                    legend.onAdd = function (map) {
+
+                        var div = L.DomUtil.create('div', 'info legend'),
+                                legendgrades = [0,1,10, 15, 20, 25, 30, 35],
+                                labels = [],from, to;
+
+                        for (var i = 0; i < legendgrades.length; i++) {
+                            from = legendgrades[i];
+                            to = legendgrades[i + 1];
+                            if (from !=0){
+                                labels.push(
+                                        '<i style="background:' + getColor(from + 1) + '"></i> ' +
+                                                (from+1) + (to ? '&ndash;' + to : '+'));
+                            }
+                            else {
+                                labels.push(
+                                        '<i style="background:' + getColor(from + 1) + '"></i> ' +
+                                                (from) + (to ? '&ndash;' + to : '+'));
+                            }
+
+                        }
+
+                        div.innerHTML = labels.join('<br>');
+                        return div;
+                    };
+
+                    legend.addTo(map);
+
+                    // Adding Stations
+                    divvyBikeLayer();
+                }
+                else {
+
+                    // Removing the Community Layer
+                    d3.selectAll("path").remove();
+
+                    // removing divs
+                    $("div").remove(".leaflet-top leaflet-right");
+                    $("div").remove(".leaflet-top leaflet-right");
+                    $("div").remove(".info.leaflet-control");
+
+                    map.removeLayer(map3);
+                    // Adding Stations
+                    divvyBikeLayer();
+
+                }
+
+
+            }
+        }
+
+        function divvyBikeLayer(){
+            map.addLayer(map3);
+
+            console.log(map3);
+            var geojsonMarkerOptions = {
+                radius: 10,
+                fillColor: "#ff7800",
+                color: "#000",
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 0.8
+            };
+
+            /*
+             var greenIcon = L.Icon.extend({
+             iconUrl: 'http://technobd.rvillage.com/application/modules/Rvillage/externals/images/all_members.png',
+             iconSize:     [38, 95], // size of the icon
+             shadowSize:   [50, 64], // size of the shadow
+             iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+             shadowAnchor: [4, 62],  // the same for the shadow
+             popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+             });
+             */
+
+            var DivvyLogo ='DivvyLogo.jpg';
+            L.geoJson(MapGeoJson, {
+                pointToLayer: function (feature, latlng) {
+
+                    var content = "<table border=1><tr><th colspan=2 bgcolor=#99CCFF font-size><b>" + feature.properties.station_name + "</th></tr><tr><th colspan=2><img src='App/Map/DivvyLogo.jpg' height=80 width=200></th></tr><tr><td>Popularity Rank" + "</td><td>"+ feature.properties.popularity +"</td></tr><tr><td> Community Name </td><td>" +  feature.properties.community + "</td></tr><tr><td>Overall Inflow</td><td>"+ feature.properties.inflow+"</td></tr><tr><td>Overall Outflow</td><td>"+ feature.properties.outflow+"</td></tr></table>";
+                    var popup = L.popup().setContent(content);
+
+                    var marker = L.circleMarker(latlng, geojsonMarkerOptions);
+
+
+                    marker.bindPopup(popup);
+                    return marker;
+                }
+            }).addTo(map);
+        }
+
+        var mapURL2 = 'http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png';
+        var mapCopyright2 = 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community';
+
+        var mapURL3 = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+        var mapCopyright3 = '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>';
+
+
+        var mapURL1 = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+        var mapCopyright1 = 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community';
+
+        //var mapURL2 = 'http://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}';
+        //var mapCopyright2 = 'Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC';
+
+        map1 = L.tileLayer(mapURL1, {attribution: mapCopyright1});
+        map2 = L.tileLayer(mapURL2, {attribution: mapCopyright2});
+        map3 = L.tileLayer(mapURL3, {attribution: mapCopyright3});
+
+
+        map = L.map('map', {layers: [map1,map2,map3], zoomControl: true}).setView([41.8694, -87.661], 16);
+
+        //map = L.map('map', {zoomControl: false}).setView([41.869910, -87.65], 16);
+
+        // mapLink = L.tileLayer(mapURL1, {attribution: mapCopyright1}).addTo(map);
+
+
+        /* Initialize the SVG layer */
+        map._initPathRoot();
+
+        /* We simply pick up the SVG from the map object */
+        svg = d3.select(map.getPanes().overlayPane).select("svg");
+
+        var g = svg.append("g");
+
+        var parseDate = d3.time.format("%Y-%m-%dT%H:%M:%S").parse;
+
+        var today = new Date();
+
+        var bigCollection = {};
+
+        //var numBeats = 3;
+        var currentBeats = 0;
+
+</script>
+        <div id="buttons" style="width:100%; height:10%; text-align: center; background: #fff">
+            <input name="updateButton1"
+                   type="button"
+                   value="Zoom In"
+                   onclick="map.zoomIn()" />
+            <input name="updateButton2"
+                   type="button"
+                   value="Zoom Out"
+                   onclick="map.zoomOut()" />
+            <input name="updateButton3"
+                   type="button"
+                   value="Map View"
+                   onclick="setMap(2)" />
+            <input name="updateButton4"
+                   type="button"
+                   value="Aerial View"
+                   onclick="setMap(1)" />
+        <!--<input name="updateButton4"
+                   type="button"
+                   value="Refresh"
+                   onclick="refreshData()" />  Commented for Alpha Stage by Sharad--> 
+            <input name = "updateButton5"
+                   type = "Button"
+                   value = "Community View"
+                   onclick= "setMap(3)"/>
+        </div>
+
+             </div>
+
+</div>
+ </div>
+</body>
+</html>
