@@ -2,8 +2,8 @@ var Bikes_DayOfYear = Class.extend({
 
 	construct: function() {
 		this.areaMargin = {top: 100, right: 20, bottom: 200, left: 110};
-		this.areaCanvasWidth = 1200;
-		this.areaCanvasHeight = 150;
+		this.areaCanvasWidth = 1000;
+		this.areaCanvasHeight = 500;
 
 		this.areaWidth = 0;
 		this.areaHeight = 0;
@@ -36,8 +36,9 @@ var Bikes_DayOfYear = Class.extend({
     		.domain([new Date(data[0].date), d3.time.day.offset(new Date(data[data.length - 1].date), 1)])
     		.rangeRound([0, width - margin.left - margin.right]);*/
 
-		var x = 
-		d3.scale.ordinal().rangeRoundBands([0, width], .1);;
+		var x = d3.scale.ordinal()
+            .domain([178,365])
+           .rangeRoundBands([0, width]);
 		//d3.time.scale().range([0, width]);
 		var y = d3.scale.linear()
 			.range([height, 0]);
@@ -48,7 +49,8 @@ var Bikes_DayOfYear = Class.extend({
 		var xAxis = d3.svg.axis()
 			.scale(x)
 			.orient("bottom");
-			//.tickFormat(d3.time.format("%d/%m/%Y"));
+
+        xAxis.tickValues([190,220, 250,280,310,340,365]);
 
 		var yAxis = d3.svg.axis()
 			.scale(y)
@@ -63,14 +65,15 @@ var Bikes_DayOfYear = Class.extend({
 		data.forEach(function(d) {
 			//d.date = parseDate(d.date);
 			d.No_Of_Bikes = +d.No_Of_Bikes;
+           // d.Day_of_Year = new Date(+d.Day_of_Year);
 		});
 		 
 		//x.domain(d3.extent(data,function(d) { return d.date; }));
-		x.domain(data.map(function(d) { return d.Day_of_Year; }));
+		x.domain(data.map(function(d) { return +d.Day_of_Year; }));
 		y.domain([0, d3.max(data, function(d) { return d.No_Of_Bikes; })]);
 		//y.domain(d3.extent(data, function(d) { return d.close; }));
 		var area = d3.svg.area()
-    		.x(function(d) { return x(d.Day_of_Year); })
+    		.x(function(d) { return x( +d.Day_of_Year); })
     		.y0(height)
     		.y1(function(d) { return y(d.No_Of_Bikes); });
 		
@@ -78,7 +81,16 @@ var Bikes_DayOfYear = Class.extend({
 		svg.append("g")
 		.attr("class", "x axis")
 		.attr("transform", "translate(0," + height + ")")
-		.call(xAxis);
+		.call(xAxis)
+            /*.selectAll("text")
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", ".15em")
+            .attr("transform", function(d) {
+                return "rotate(-65)"
+            })*/
+
+        ;
 		/*.append("text")
 		.selectAll("text")
 			.style("text-anchor", "end")
@@ -110,7 +122,7 @@ var Bikes_DayOfYear = Class.extend({
 		   .enter()
 		   .append("text")
 		   .attr("x", width/2)
-		   .attr("y", height-200)
+		   .attr("y", height-600)
 		   .attr("text-anchor","middle")
 		   .attr("font-family", "sans-serif")
 		   .attr("font-size","20pt")
@@ -150,5 +162,5 @@ var Bikes_DayOfYear = Class.extend({
 	updateScreen: function (){
 	  this.updateWindow();
 	  this.updateData();
-	},
+	}
 });

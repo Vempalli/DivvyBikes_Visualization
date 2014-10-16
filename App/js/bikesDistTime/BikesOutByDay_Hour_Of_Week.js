@@ -2,8 +2,8 @@ var Bikes_DayOfWeek = Class.extend({
 
 	construct: function() {
 		this.barMargin = {top: 100, right: 20, bottom: 200, left: 110};
-		this.barCanvasWidth = 1900;
-		this.barCanvasHeight = 150;
+		this.barCanvasWidth = 1000;
+		this.barCanvasHeight = 500;
 
 		this.barWidth = 0;
 		this.barHeight = 0;
@@ -34,7 +34,7 @@ var Bikes_DayOfWeek = Class.extend({
 		svg.selectAll("*").remove();
 				
 		var x = d3.scale.ordinal()
-			.rangeRoundBands([0, width], .1);
+			.rangeRoundBands([0, width], .5);
 		var y = d3.scale.linear()
 			.rangeRound([height, 0]);
 		var color = d3.scale.ordinal()
@@ -93,7 +93,7 @@ var Bikes_DayOfWeek = Class.extend({
 		   .enter()
 		   .append("text")
 		   .attr("x", width/2)
-		   .attr("y", height-200)
+		   .attr("y", height-600)
 		   .attr("text-anchor","middle")
 		   .attr("font-family", "sans-serif")
 		   .attr("font-size","20pt")
@@ -168,7 +168,7 @@ var Bikes_DayOfWeek = Class.extend({
 		   .enter()
 		   .append("text")
 		   .attr("x", width/2)
-		   .attr("y", height-200)
+		   .attr("y", height-600)
 		   .attr("text-anchor","middle")
 		   .attr("font-family", "sans-serif")
 		   .attr("font-size","20pt")
@@ -188,13 +188,13 @@ var Bikes_DayOfWeek = Class.extend({
 		var totalBarSizeY = this.barCanvasHeight+this.barMargin.top+this.barMargin.bottom;
 
 		switch(this.myTag){
-			case "#barchart1":
+			case "#Bikebarchart1":
 				this.svgBar1 = d3.select(this.myTag).append("svg:svg")
 				.attr("width", this.barWidth)
 				.attr("height", this.barHeight)
 				.attr("viewBox", "" + -this.barMargin.left + " 0 " + totalBarSizeX + " " + this.barCanvasHeight);
 				break;
-			case "#barchart2":
+			case "#Bikebarchart2":
 				this.svgBar2 = d3.select(this.myTag).append("svg:svg")
 				.attr("width", this.barWidth)
 				.attr("height", this.barHeight)
@@ -207,13 +207,13 @@ var Bikes_DayOfWeek = Class.extend({
 
 	updateData: function (){	
 		switch(this.myTag){
-			case "#barchart1":
-				var fileToLoad = "json/bikesDistTime/BikesOutByDayOfWeek_Chicago.csv";
+			case "#Bikebarchart1":
+				var fileToLoad = "App/json/bikesDistTime/BikesOutByDayOfWeek_Chicago.csv";
 				this.inDataCallbackFunc = this.drawBarChart1.bind(this);
 				d3.csv(fileToLoad, this.inDataCallbackFunc);
 				break;
-			case "#barchart2":
-				var fileToLoad = "json/bikesDistTime/BikesOutByHourOfDay_Chicago.csv";
+			case "#Bikebarchart2":
+				var fileToLoad = "App/json/bikesDistTime/BikesOutByHourOfDay_Chicago.csv";
 				this.inDataCallbackFunc = this.drawBarChart2.bind(this);
 				d3.csv(fileToLoad, this.inDataCallbackFunc);
 				break;
@@ -225,5 +225,5 @@ var Bikes_DayOfWeek = Class.extend({
 	updateScreen: function (){
 	  this.updateWindow();
 	  this.updateData();
-	},
+	}
 });

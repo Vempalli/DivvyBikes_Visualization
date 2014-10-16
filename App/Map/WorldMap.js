@@ -230,6 +230,7 @@ var worldMap =
             "id": 1, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.27"
                 }, 
@@ -337,6 +338,7 @@ var worldMap =
             "id": 2, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.68"
                 }, 
@@ -652,6 +654,7 @@ var worldMap =
             "id": 3, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 14,
                 "condition_value": {
                     "2010": "0.51"
                 }, 
@@ -727,6 +730,7 @@ var worldMap =
             "id": 4, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 5,
                 "condition_value": {
                     "2010": "0.84"
                 }, 
@@ -846,6 +850,7 @@ var worldMap =
             "id": 5, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 7,
                 "condition_value": {
                     "2010": "0.69"
                 }, 
@@ -1168,7 +1173,8 @@ var worldMap =
             }, 
             "id": 6, 
             "properties": {
-                "condition_title": "Communities", 
+                "condition_title": "Communities",
+                "divvy_station" : 32,
                 "condition_value": {
                     "2010": "0.88"
                 }, 
@@ -1520,6 +1526,7 @@ var worldMap =
             "id": 7, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 36,
                 "condition_value": {
                     "2010": "1.15"
                 }, 
@@ -1867,6 +1874,7 @@ var worldMap =
             "id": 8, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 36,
                 "condition_value": {
                     "2010": "2.11"
                 }, 
@@ -1946,6 +1954,7 @@ var worldMap =
             "id": 9, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "1.61"
                 }, 
@@ -2335,6 +2344,7 @@ var worldMap =
             "id": 10, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "2.03"
                 }, 
@@ -2598,6 +2608,7 @@ var worldMap =
             "id": 11, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "1.45"
                 }, 
@@ -3001,6 +3012,7 @@ var worldMap =
             "id": 12, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "3.3"
                 }, 
@@ -3184,6 +3196,7 @@ var worldMap =
             "id": 13, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "1.56"
                 }, 
@@ -3347,6 +3360,7 @@ var worldMap =
             "id": 14, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.52"
                 }, 
@@ -3490,6 +3504,7 @@ var worldMap =
             "id": 15, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.69"
                 }, 
@@ -3641,6 +3656,7 @@ var worldMap =
             "id": 16, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.51"
                 }, 
@@ -3748,6 +3764,7 @@ var worldMap =
             "id": 17, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.67"
                 }, 
@@ -3807,6 +3824,7 @@ var worldMap =
             "id": 18, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.6"
                 }, 
@@ -3886,6 +3904,7 @@ var worldMap =
             "id": 19, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.3"
                 }, 
@@ -3985,6 +4004,7 @@ var worldMap =
             "id": 20, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.12"
                 }, 
@@ -4072,6 +4092,7 @@ var worldMap =
             "id": 21, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.41"
                 }, 
@@ -4295,6 +4316,7 @@ var worldMap =
             "id": 22, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 12,
                 "condition_value": {
                     "2010": "0.59"
                 }, 
@@ -4450,6 +4472,7 @@ var worldMap =
             "id": 23, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.3"
                 }, 
@@ -4713,6 +4736,7 @@ var worldMap =
             "id": 24, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 28, 
                 "condition_value": {
                     "2010": "0.78"
                 }, 
@@ -4860,6 +4884,7 @@ var worldMap =
             "id": 25, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.13"
                 }, 
@@ -4963,6 +4988,7 @@ var worldMap =
             "id": 26, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.22"
                 }, 
@@ -5066,6 +5092,7 @@ var worldMap =
             "id": 27, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0"
                 }, 
@@ -5253,6 +5280,7 @@ var worldMap =
             "id": 28, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 43,
                 "condition_value": {
                     "2010": "2.57"
                 }, 
@@ -5408,6 +5436,7 @@ var worldMap =
             "id": 29, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.11"
                 }, 
@@ -5551,6 +5580,7 @@ var worldMap =
             "id": 30, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station": 1,
                 "condition_value": {
                     "2010": "0.32"
                 }, 
@@ -5734,6 +5764,7 @@ var worldMap =
             "id": 31, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 13,
                 "condition_value": {
                     "2010": "0.34"
                 }, 
@@ -5973,6 +6004,7 @@ var worldMap =
             "id": 32, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 27,
                 "condition_value": {
                     "2010": "6.76"
                 }, 
@@ -6316,6 +6348,7 @@ var worldMap =
             "id": 33, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 8,
                 "condition_value": {
                     "2010": "1.12"
                 }, 
@@ -6494,7 +6527,8 @@ var worldMap =
             }, 
             "id": 34, 
             "properties": {
-                "condition_title": "Communities", 
+                "condition_title": "Communities",
+                "divvy_station": 4, 
                 "condition_value": {
                     "2010": "0.97"
                 }, 
@@ -6686,6 +6720,7 @@ var worldMap =
             "id": 35, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 10,
                 "condition_value": {
                     "2010": "0.05"
                 }, 
@@ -6793,6 +6828,7 @@ var worldMap =
             "id": 36, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 1,
                 "condition_value": {
                     "2010": "0.17"
                 }, 
@@ -6880,6 +6916,7 @@ var worldMap =
             "id": 37, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.7"
                 }, 
@@ -6934,7 +6971,8 @@ var worldMap =
             }, 
             "id": 38, 
             "properties": {
-                "condition_title": "Communities", 
+                "condition_title": "Communities",
+                "divvy_station" : 3, 
                 "condition_value": {
                     "2010": "0.36"
                 }, 
@@ -7066,6 +7104,7 @@ var worldMap =
             "id": 39, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 6,
                 "condition_value": {
                     "2010": "0.22"
                 }, 
@@ -7125,6 +7164,7 @@ var worldMap =
             "id": 40, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 1,
                 "condition_value": {
                     "2010": "0.26"
                 }, 
@@ -7296,6 +7336,7 @@ var worldMap =
             "id": 41, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 5,
                 "condition_value": {
                     "2010": "1.13"
                 }, 
@@ -7515,6 +7556,7 @@ var worldMap =
             "id": 42, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.08"
                 }, 
@@ -7802,6 +7844,7 @@ var worldMap =
             "id": 43, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.15"
                 }, 
@@ -8013,6 +8056,7 @@ var worldMap =
             "id": 44, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.45"
                 }, 
@@ -8112,6 +8156,7 @@ var worldMap =
             "id": 45, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.69"
                 }, 
@@ -8255,6 +8300,7 @@ var worldMap =
             "id": 46, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.35"
                 }, 
@@ -8342,6 +8388,7 @@ var worldMap =
             "id": 47, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "1.03"
                 }, 
@@ -8404,7 +8451,8 @@ var worldMap =
             }, 
             "id": 48, 
             "properties": {
-                "condition_title": "Communities", 
+                "condition_title": "Communities",
+                "divvy_station" : 0,  
                 "condition_value": {
                     "2010": "0.58"
                 }, 
@@ -8556,6 +8604,7 @@ var worldMap =
             "id": 49, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.18"
                 }, 
@@ -8651,6 +8700,7 @@ var worldMap =
             "id": 50, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.27"
                 }, 
@@ -8922,6 +8972,7 @@ var worldMap =
             "id": 51, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.07"
                 }, 
@@ -9265,6 +9316,7 @@ var worldMap =
             "id": 52, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.26"
                 }, 
@@ -9420,6 +9472,7 @@ var worldMap =
             "id": 53, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.07"
                 }, 
@@ -9535,6 +9588,7 @@ var worldMap =
             "id": 54, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0"
                 }, 
@@ -9678,6 +9732,7 @@ var worldMap =
             "id": 55, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.32"
                 }, 
@@ -9744,7 +9799,7 @@ var worldMap =
             }, 
             "id": 56, 
             "properties": {
-                "condition_title": "Communities", 
+                "condition_title": "Communities", "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.72"
                 }, 
@@ -9832,6 +9887,7 @@ var worldMap =
             "id": 57, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.45"
                 }, 
@@ -9951,6 +10007,7 @@ var worldMap =
             "id": 58, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.24"
                 }, 
@@ -10073,7 +10130,8 @@ var worldMap =
             }, 
             "id": 59, 
             "properties": {
-                "condition_title": "Communities", 
+                "condition_title": "Communities",
+                "divvy_station" : 0,  
                 "condition_value": {
                     "2010": "0.13"
                 }, 
@@ -10265,6 +10323,7 @@ var worldMap =
             "id": 60, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 6,
                 "condition_value": {
                     "2010": "0.47"
                 }, 
@@ -10372,6 +10431,7 @@ var worldMap =
             "id": 61, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.14"
                 }, 
@@ -10474,7 +10534,8 @@ var worldMap =
             }, 
             "id": 62, 
             "properties": {
-                "condition_title": "Communities", 
+                "condition_title": "Communities",
+                "divvy_station" : 0,  
                 "condition_value": {
                     "2010": "0.33"
                 }, 
@@ -10594,6 +10655,7 @@ var worldMap =
             "id": 63, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.25"
                 }, 
@@ -10645,6 +10707,7 @@ var worldMap =
             "id": 64, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.3"
                 }, 
@@ -10752,6 +10815,7 @@ var worldMap =
             "id": 65, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.57"
                 }, 
@@ -10863,6 +10927,7 @@ var worldMap =
             "id": 66, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.22"
                 }, 
@@ -10982,6 +11047,7 @@ var worldMap =
             "id": 67, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.08"
                 }, 
@@ -11108,7 +11174,8 @@ var worldMap =
             }, 
             "id": 68, 
             "properties": {
-                "condition_title": "Communities", 
+                "condition_title": "Communities",
+                "divvy_station" : 0,  
                 "condition_value": {
                     "2010": "0.23"
                 }, 
@@ -11304,6 +11371,7 @@ var worldMap =
             "id": 69, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.15"
                 }, 
@@ -11447,6 +11515,7 @@ var worldMap =
             "id": 70, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.29"
                 }, 
@@ -11630,6 +11699,7 @@ var worldMap =
             "id": 71, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.18"
                 }, 
@@ -11733,6 +11803,7 @@ var worldMap =
             "id": 72, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "1.05"
                 }, 
@@ -11856,6 +11927,7 @@ var worldMap =
             "id": 73, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.15"
                 }, 
@@ -11987,6 +12059,7 @@ var worldMap =
             "id": 74, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.79"
                 }, 
@@ -12082,6 +12155,7 @@ var worldMap =
             "id": 75, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "0.98"
                 }, 
@@ -12801,6 +12875,7 @@ var worldMap =
             "id": 76, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 0, 
                 "condition_value": {
                     "2010": "1.02"
                 }, 
@@ -12968,6 +13043,7 @@ var worldMap =
             "id": 77, 
             "properties": {
                 "condition_title": "Communities", 
+                "divvy_station" : 1,
                 "condition_value": {
                     "2010": "0.51"
                 }, 

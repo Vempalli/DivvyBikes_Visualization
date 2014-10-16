@@ -2,8 +2,8 @@ var RideDistApp = Class.extend({
 
 	construct: function() {
 		this.barMargin = {top: 100, right: 20, bottom: 200, left: 110};
-		this.barCanvasWidth = 1900;
-		this.barCanvasHeight = 150;
+		this.barCanvasWidth = 1000;
+		this.barCanvasHeight = 500;
 
 		this.barWidth = 0;
 		this.barHeight = 0;
@@ -34,7 +34,7 @@ var RideDistApp = Class.extend({
 		svg.selectAll("*").remove();
 				
 		var x = d3.scale.ordinal()
-			.rangeRoundBands([0, width], .1);
+			.rangeRoundBands([0, width], .5);
 		var y = d3.scale.linear()
 			.rangeRound([height, 0]);
 		var color = d3.scale.ordinal()
@@ -94,7 +94,7 @@ var RideDistApp = Class.extend({
 		   .enter()
 		   .append("text")
 		   .attr("x", width/2)
-		   .attr("y", height-200)
+		   .attr("y", height-600)
 		   .attr("text-anchor","middle")
 		   .attr("font-family", "sans-serif")
 		   .attr("font-size","20pt")
@@ -113,7 +113,7 @@ var RideDistApp = Class.extend({
 		svg.selectAll("*").remove();
 				
 		var x = d3.scale.ordinal()
-			.rangeRoundBands([0, width], .1);
+			.rangeRoundBands([0, width], .5);
 		var y = d3.scale.linear()
 			.rangeRound([height, 0]);
 		var color = d3.scale.ordinal()
@@ -173,7 +173,7 @@ var RideDistApp = Class.extend({
 		   .enter()
 		   .append("text")
 		   .attr("x", width/2)
-		   .attr("y", height-200)
+		   .attr("y", height-600)
 		   .attr("text-anchor","middle")
 		   .attr("font-family", "sans-serif")
 		   .attr("font-size","20pt")
@@ -215,12 +215,12 @@ var RideDistApp = Class.extend({
 	updateData: function (){	
 		switch(this.myTag){
 			case "#barchart1":
-				var fileToLoad = "json/RideDist/ride_dist_by_distance.php";
+				var fileToLoad = "App/JsonData/ride_dist_by_distance.json";
 				this.inDataCallbackFunc = this.drawBarChart1.bind(this);
 				d3.json(fileToLoad, this.inDataCallbackFunc);
 				break;
 			case "#barchart2":
-				var fileToLoad = "json/RideDist/ride_dist_by_time.php";
+				var fileToLoad = "JsonData/ride_dist_by_time.json";
 				this.inDataCallbackFunc = this.drawBarChart2.bind(this);
 				d3.json(fileToLoad, this.inDataCallbackFunc);
 				break;
@@ -232,5 +232,5 @@ var RideDistApp = Class.extend({
 	updateScreen: function (){
 	  this.updateWindow();
 	  this.updateData();
-	},
+	}
 });

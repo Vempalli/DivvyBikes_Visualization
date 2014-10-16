@@ -2,7 +2,7 @@ var BikeDistApp = Class.extend({
 
 	construct: function() {
 		this.scatterMargin = {top: 100, right: 20, bottom: 200, left: 110};
-		this.scatterCanvasWidth = 1900;
+		this.scatterCanvasWidth = 1000;
 		this.scatterCanvasHeight = 150;
 
 		this.scatterWidth = 0;
@@ -11,8 +11,8 @@ var BikeDistApp = Class.extend({
 		this.svgScatter = null;
 		
 		this.barMargin = {top: 100, right: 20, bottom: 200, left: 110};
-		this.barCanvasWidth = 1900;
-		this.barCanvasHeight = 150;
+		this.barCanvasWidth = 1000;
+		this.barCanvasHeight = 500;
 
 		this.barWidth = 0;
 		this.barHeight = 0;
@@ -42,7 +42,7 @@ var BikeDistApp = Class.extend({
 		svg.selectAll("*").remove();
 				
 		var x = d3.scale.ordinal()
-			.rangeRoundBands([0, width], .1);
+			.rangeRoundBands([0, width], .5);
 		var y = d3.scale.linear()
 			.rangeRound([height, 0]);
 		var color = d3.scale.ordinal()
@@ -102,7 +102,7 @@ var BikeDistApp = Class.extend({
 		   .enter()
 		   .append("text")
 		   .attr("x", width/2)
-		   .attr("y", height-200)
+		   .attr("y", height-600)
 		   .attr("text-anchor","middle")
 		   .attr("font-family", "sans-serif")
 		   .attr("font-size","20pt")
@@ -205,7 +205,7 @@ var BikeDistApp = Class.extend({
 		var totalBarSizeY = this.barCanvasHeight+this.barMargin.top+this.barMargin.bottom;
 
 		switch(this.myTag){
-			case "#barchart":
+			case "#Bikebarchart":
 				this.barWidth = xWin;
 				this.barHeight = yWin;
 				
@@ -214,7 +214,7 @@ var BikeDistApp = Class.extend({
 				.attr("height", this.barHeight)
 				.attr("viewBox", "" + -this.barMargin.left + " 0 " + totalBarSizeX + " " + this.barCanvasHeight);
 			break;
-			case "#scatterchart":
+			case "#Bikescatterchart":
 				this.scatterWidth = xWin;
 				this.scatterHeight = yWin;
 								
@@ -230,13 +230,13 @@ var BikeDistApp = Class.extend({
 
 	updateData: function (){	
 		switch(this.myTag){
-			case "#barchart":
-				var fileToLoad = "json/RideDist/bike_dist_by_distance.php";
+			case "#Bikebarchart":
+				var fileToLoad = "App/JsonData/bike_dist_by_distance.json";
 				this.inDataCallbackFunc = this.drawBarChart.bind(this);
 				d3.json(fileToLoad, this.inDataCallbackFunc);
 				break;
-			case "#scatterchart":
-				var fileToLoad = "json/RideDist/bike_dist_by_distance_scatter.php";
+			case "#Bikescatterchart":
+				var fileToLoad = "App/JsonData/bike_dist_by_distance_scatter.json";
 				this.inDataCallbackFunc = this.drawScatterChart.bind(this);
 				d3.json(fileToLoad, this.inDataCallbackFunc);
 				break;
@@ -248,5 +248,5 @@ var BikeDistApp = Class.extend({
 	updateScreen: function (){
 	  this.updateWindow();
 	  this.updateData();
-	},
+	}
 });

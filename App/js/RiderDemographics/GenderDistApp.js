@@ -2,8 +2,8 @@ var GenderDistApp = Class.extend({
 
 	construct: function() {
 		this.barMargin = {top: 100, right: 20, bottom: 200, left: 110};
-		this.barCanvasWidth = 1900;
-		this.barCanvasHeight = 150;
+		this.barCanvasWidth = 1000;
+		this.barCanvasHeight = 500;
 
 		this.barWidth = 0;
 		this.barHeight = 0;
@@ -141,7 +141,7 @@ var GenderDistApp = Class.extend({
 		   .enter()
 		   .append("text")
 		   .attr("x", width/2)
-		   .attr("y", height-200)
+		   .attr("y", height-600)
 		   .attr("text-anchor","middle")
 		   .attr("font-family", "sans-serif")
 		   .attr("font-size","20pt")

@@ -102,7 +102,7 @@ var RideDistByCommAndStatApp = Class.extend({
 			.tickFormat(d3.format(".2s"));
 
 		color.domain(d3.keys(data[0])
-			.filter(function(key) {return key == "TOTAL_TRIPS"}));		 
+			.filter(function(key) {return key === "TOTAL_TRIPS"}));		 
 			
 		data.forEach(function(d) {
 			d.DIST_METERS = +d.DIST_METERS;

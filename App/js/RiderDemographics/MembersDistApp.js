@@ -2,8 +2,8 @@ var MembersDistApp = Class.extend({
 
 	construct: function() {
 		this.pieMargin = {top: 500, right: 20, bottom: 40, left: 750};
-		this.pieCanvasWidth = 1500;
-		this.pieCanvasHeight = 20;
+		this.pieCanvasWidth = 1000;
+		this.pieCanvasHeight = 500;
 		
 		this.pieWidth;
 		this.pieHeight;
@@ -25,7 +25,7 @@ var MembersDistApp = Class.extend({
 	drawPieChart: function (error, data)
 	{	
 		var width = 700;
-		var height = 250;
+		var height = 600;
 		var svg = this.svgPie;		
 		var radius = Math.min(width, height) / 2;
 
@@ -43,7 +43,7 @@ var MembersDistApp = Class.extend({
 			d.POPULATION = +d.POPULATION;
 		});
 
-		svg.append("g").attr("transform", "translate(" + width / 2 + "," + (height / 2) + ")");
+		svg.append("g").attr("transform", "translate(" + width / 2 + "," + (height / 1.5) + ")");
 
 		var g = svg.selectAll(".arc")
 			.data(pie(data))
@@ -66,11 +66,11 @@ var MembersDistApp = Class.extend({
 		   .enter()
 		   .append("text")
 		   .attr("x", (width/2-335))
-		   .attr("y", 0 - (height/2+10))
+		   .attr("y", 0 - (height/2))
 		   .attr("font-family", "sans-serif")
 		   .attr("text-anchor","middle")
-		   .attr('font-size','18pt')
-		   .text("Members Distribution. - Pie Chart");		
+		   .attr('font-size','20pt')
+		   .text("Members Distribution - Pie Chart");
 	},
 	
 	/////////////////////////////////////////////////////////////
