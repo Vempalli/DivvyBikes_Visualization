@@ -47,7 +47,7 @@ h1{
         src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js">
 
     </script>
-    <script style="text/javascript" src="data/jquery-1.11.1.min.js"></script>
+    <script style="text/javascript" src="App/Map/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
@@ -65,6 +65,16 @@ h1{
             top.frames['TargetPage'].location = 'data.html';
 
     }
+    function showCompare(){
+
+        top.frames['TargetPage'].location = 'compare.html';
+
+    }
+    function showPlayBack(){
+
+        top.frames['TargetPage'].location = 'playBack.html';
+
+    }
 </script>
 
 </head>
@@ -72,7 +82,12 @@ h1{
 <center><h1>Bicycle Race</h1></center><br>
 <div id="container" style="width: 100%;height: 90%;border-right: thin solid #d3d3d3">
 <div id="controls" style="position: relative;float: left;width:100%;height: 7%">
-    <center><button id = "Overall" value="OverallData" onclick="showOverAllData()">Show Overall Data</button> </center><!-- Define this onclick TODO-->
+    <center>
+        <button id = "Overall" value="OverallData" onclick="showOverAllData()">Overall Data</button>
+        <button id = "Compare" value="CompareData" onclick="showCompare()">Compare</button>
+
+        <button id = "PlayBack" value="PlayBack" onclick="showPlayBack()">Play Back</button>
+    </center><!-- Define this onclick TODO-->
 </div>
     <div id="MapSegment" style="position: relative;float: left;height: 100%;width: 100%">
 	    <div id="map" class="MapSegment" style="width: 100%; height: 83%;"></div>

@@ -33,7 +33,7 @@ var Bikes_DayOfYear = Class.extend({
 		svg.selectAll("*").remove();
 		
 		/*var x = d3.time.scale()
-    		.domain([new Date(data[0].date), d3.time.day.offset(new Date(data[data.length - 1].date), 1)])
+    		.domain([new Date(Map[0].date), d3.time.day.offset(new Date(Map[Map.length - 1].date), 1)])
     		.rangeRound([0, width - margin.left - margin.right]);*/
 
 		var x = d3.scale.ordinal()
@@ -45,12 +45,18 @@ var Bikes_DayOfYear = Class.extend({
 		
 		var color = d3.scale.ordinal()
 			.range(["#98abc5"]);
-		 
+
+        var days = [ 190,220, 250,280,310,340,365];
+
 		var xAxis = d3.svg.axis()
 			.scale(x)
 			.orient("bottom");
 
-        xAxis.tickValues([190,220, 250,280,310,340,365]);
+
+        xAxis
+            .tickValues(days)
+           // .tickValues(["July 1","Aug 15","Sept 15","Oct 15", "Nov 15","Dec 31"])
+        ;
 
 		var yAxis = d3.svg.axis()
 			.scale(y)
@@ -68,10 +74,10 @@ var Bikes_DayOfYear = Class.extend({
            // d.Day_of_Year = new Date(+d.Day_of_Year);
 		});
 		 
-		//x.domain(d3.extent(data,function(d) { return d.date; }));
+		//x.domain(d3.extent(Map,function(d) { return d.date; }));
 		x.domain(data.map(function(d) { return +d.Day_of_Year; }));
 		y.domain([0, d3.max(data, function(d) { return d.No_Of_Bikes; })]);
-		//y.domain(d3.extent(data, function(d) { return d.close; }));
+		//y.domain(d3.extent(Map, function(d) { return d.close; }));
 		var area = d3.svg.area()
     		.x(function(d) { return x( +d.Day_of_Year); })
     		.y0(height)
@@ -152,7 +158,7 @@ var Bikes_DayOfYear = Class.extend({
 	/////////////////////////////////////////////////////////////
 
 	updateData: function (){	
-		var fileToLoad = "App/JsonData/Bikes_DayOfYear_Chicago.json";
+		var fileToLoad = "App/json/bikesDistTime/Bikes_DayOfYear_Chicago.json";
 		this.inDataCallbackFunc = this.drawAreaChart.bind(this);
 		d3.json(fileToLoad, this.inDataCallbackFunc);
 	},

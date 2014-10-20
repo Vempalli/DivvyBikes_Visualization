@@ -110,7 +110,7 @@ var RideDistByCommAndStatApp = Class.extend({
 		});
 		 
 		x.domain(data.map(function(d) { return d.DIST_METERS; }));
-		//Modified data to filtered data - Theja
+		//Modified Map to filtered Map - Theja
 		y.domain([0, d3.max(data.filter(function(d){
 				return d.COMMUNITY === community && d.STATION_NAME === station;
 			}), function(d) { return d.TOTAL_TRIPS; })]);
@@ -199,7 +199,7 @@ var RideDistByCommAndStatApp = Class.extend({
 		});
 		 
 		x.domain(data.map(function(d) { return d.TRIP_DURATION; }));
-		//Modified data to filtered data - Theja
+		//Modified Map to filtered Map - Theja
 		y.domain([0, d3.max(data.filter(function(d){
 				return d.COMMUNITY === community && d.STATION_NAME === station;
 			}), function(d) { return d.TOTAL_TRIPS; })]);

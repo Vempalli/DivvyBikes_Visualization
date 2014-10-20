@@ -97,7 +97,7 @@ var MembersDistApp = Class.extend({
 	/////////////////////////////////////////////////////////////
 
 	updateData: function (){	
-		var fileToLoad = "App/JsonData/population_by_usertype.json";
+		var fileToLoad = "App/json/RiderDemographics/population_by_usertype.json";
 		this.inDataCallbackFunc = this.drawPieChart.bind(this);
 		d3.json(fileToLoad, this.inDataCallbackFunc);
 	},

@@ -99,7 +99,7 @@ var GenderDistByCommApp = Class.extend({
 			return d.AGE_INTERVAL; 
 		}));
 		x1.domain(genderNames).rangeRoundBands([0, x0.rangeBand()]);
-		//y.domain([0, d3.max(data, function(d) { 
+		//y.domain([0, d3.max(Map, function(d) {
 		//	return d3.max(d.genders, function(d) { 
 		//		return d.value; 
 		//}); })]);

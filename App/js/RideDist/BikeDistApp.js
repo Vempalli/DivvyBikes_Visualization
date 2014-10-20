@@ -231,12 +231,12 @@ var BikeDistApp = Class.extend({
 	updateData: function (){	
 		switch(this.myTag){
 			case "#Bikebarchart":
-				var fileToLoad = "App/JsonData/bike_dist_by_distance.json";
+				var fileToLoad = "App/json/bikesDistTime/bike_dist_by_distance.json";
 				this.inDataCallbackFunc = this.drawBarChart.bind(this);
 				d3.json(fileToLoad, this.inDataCallbackFunc);
 				break;
 			case "#Bikescatterchart":
-				var fileToLoad = "App/JsonData/bike_dist_by_distance_scatter.json";
+				var fileToLoad = "App/json/bikesDistTime/bike_dist_by_distance_scatter.json";
 				this.inDataCallbackFunc = this.drawScatterChart.bind(this);
 				d3.json(fileToLoad, this.inDataCallbackFunc);
 				break;

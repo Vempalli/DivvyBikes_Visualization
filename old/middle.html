@@ -1,0 +1,32 @@
+
+<html>
+<head>
+    <title>Project 2: Bicycle Race</title>
+    <style>
+        body{
+            font-family: sans-serif;
+        }
+    </style>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+    <script src="data/jquery-1.11.1.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+
+    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+
+    <script>
+        $(function() {
+
+            $( "#datepicker" ).datepicker({showButtonPanel: true, defaultDate: new Date(2013,6,1), minDate: new Date(2013,6,1),maxDate:new Date(2013,11,31)});
+        });
+    </script>
+</head>
+<body>
+<div id="InteractiveContainer" style="position:relative;float:left;width: 100%; height: 100%;border-right: thin solid #d3d3d3;">
+    <center><b>Interactive View</b></center><br>
+    <div>
+        <p>Date: <input type="text" id="datepicker"></p>
+    </div>
+</div>
+
+</body>
+</html>

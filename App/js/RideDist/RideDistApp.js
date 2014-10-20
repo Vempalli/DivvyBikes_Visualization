@@ -215,12 +215,12 @@ var RideDistApp = Class.extend({
 	updateData: function (){	
 		switch(this.myTag){
 			case "#barchart1":
-				var fileToLoad = "App/JsonData/ride_dist_by_distance.json";
+				var fileToLoad = "App/json/RideDist/ride_dist_by_distance.json";
 				this.inDataCallbackFunc = this.drawBarChart1.bind(this);
 				d3.json(fileToLoad, this.inDataCallbackFunc);
 				break;
 			case "#barchart2":
-				var fileToLoad = "JsonData/ride_dist_by_time.json";
+				var fileToLoad = "App/json/RideDist/ride_dist_by_time.json";
 				this.inDataCallbackFunc = this.drawBarChart2.bind(this);
 				d3.json(fileToLoad, this.inDataCallbackFunc);
 				break;

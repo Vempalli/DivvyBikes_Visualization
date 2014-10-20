@@ -1,0 +1,50 @@
+<!--origin.html
+	This page is loaded in the right frame when "Origin" is clicked below the map in map.html in the left frame. It produces all the 
+	visualizations (pie chart, bar chart, and raw data) as appropriate.-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+		<style>
+		.axis {
+			font: 10px sans-serif;
+		}
+		.axis path,
+		.axis line {
+			fill: none;
+			stroke: #000;
+			shape-rendering: crispEdges;
+		}
+		</style>
+		<script src="http://d3js.org/d3.v3.min.js"></script>
+		<script src="js/ClassExtension.js"></script>
+		<script src="js/RideDist/RideDistByCommAndStatApp.js"></script>	
+		<script>
+			//An instance of OriginApp class is created here. Three groups of the visualizations are generated with "Chicago" the default area.;
+			var rideDistByCommAndStatApp;
+			function init(){	
+					rideDistByCommAndStatApp = new RideDistByCommAndStatApp;
+					rideDistByCommAndStatApp.showCommunityList();
+					rideDistByCommAndStatApp.showStationsList();
+					rideDistByCommAndStatApp.initAppWithCommunityAndStation("Near North Side","Dayton St & North Ave");
+					rideDistByCommAndStatApp.startup("#barchart1");
+					rideDistByCommAndStatApp.startup("#barchart2");
+				}
+		</script>
+    </head>
+	<body onload="init();">	
+		<div id="all" style="width:100%; height:100%; position:fixed; left:0;background: #fff">
+			<div id="communitymenu" style="width:100%; height:2%; background: #fff" align="center">
+				<select name = "communitySelection" id="communitySelection" 
+                onchange="rideDistByCommAndStatApp.setCommunity(this);">
+                </select>				
+			</div>
+			<div id="stationmenu" style="width:100%; height:2%; background: #fff" align="center">
+				<select name="stationSelection" id="stationSelection" 
+				onchange="rideDistByCommAndStatApp.setStation(this);">
+				</select>
+			</div><hr/>
+		   <div id="barchart1" style="width:100%; height:48%;  background: #fff"></div>
+		   <div id="barchart2" style="width:100%; height:48%;  background: #fff"></div>
+		</div>
+    </body>
+</html>

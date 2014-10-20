@@ -198,5 +198,5 @@ var Bikes_DayOfYear_Chicago = Class.extend({
 	updateScreen: function (){
 	  this.updateWindow();
 	  this.updateData();
-	},
+	}
 });

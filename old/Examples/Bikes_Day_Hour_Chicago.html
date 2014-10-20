@@ -1,0 +1,33 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+		<style>
+		.axis {
+			font: 10px sans-serif;
+		}
+		.axis path,
+		.axis line {
+			fill: none;
+			stroke: #000;
+			shape-rendering: crispEdges;
+		}
+		</style>
+		<script src="http://d3js.org/d3.v3.min.js"></script>
+		<script src="js/ClassExtension.js"></script>
+		<script src="js/bikesDistTime/BikesOutByDay_Hour_Of_Week.js"></script>	
+		<script>
+			var bikesDistribution;
+			function init(){	
+				bikesDistribution = new Bikes_DayOfWeek;
+				bikesDistribution.startup("#barchart1");
+				bikesDistribution.startup("#barchart2");
+				}
+		</script>
+    </head>
+	<body onload="init();">	
+		<div id="all" style="width:100%; height:100%; position:fixed; left:0;top:0; background: #fff">
+		   <div id="barchart1" style="width:100%; height:50%;  background: #fff;"></div>
+		   <div id="barchart2" style="width:100%; height:50%;  background: #fff;"></div>
+		</div>
+    </body>
+</html>
